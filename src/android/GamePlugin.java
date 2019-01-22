@@ -35,6 +35,22 @@ import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import java.util.Arrays;
+import org.apache.cordova.CordovaArgs;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CallbackContext;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class GamePlugin extends CordovaPlugin {
     private static final String TAG = "GamePlugin";
@@ -51,7 +67,34 @@ public class GamePlugin extends CordovaPlugin {
         LOG.v(TAG, "StatusBar: initialization");
         super.initialize(cordova, webView);
 
+        this.hideStatusBar();
 
+    }
+
+    /**
+     * Executes the request and returns PluginResult.
+     *
+     * @param action            The action to execute.
+     * @param args              JSONArry of arguments for the plugin.
+     * @param callbackContext   The callback id used when calling back into JavaScript.
+     * @return                  True if the action was valid, false otherwise.
+     */
+    @Override
+    public boolean execute(final String action, final CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
+        LOG.v(TAG, "Executing action: " + action);
+        final Activity activity = this.cordova.getActivity();
+        final Window window = activity.getWindow();
+
+        return false;
+    }
+
+
+
+
+
+
+
+    public void hideStatusBar(){
 
         this.cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -82,24 +125,55 @@ public class GamePlugin extends CordovaPlugin {
                 window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             }
         });
-
     }
 
     /**
-     * Executes the request and returns PluginResult.
+     * Called when the system is about to start resuming a previous activity.
      *
-     * @param action            The action to execute.
-     * @param args              JSONArry of arguments for the plugin.
-     * @param callbackContext   The callback id used when calling back into JavaScript.
-     * @return                  True if the action was valid, false otherwise.
+     * @param multitasking		Flag indicating if multitasking is turned on for app
      */
     @Override
-    public boolean execute(final String action, final CordovaArgs args, final CallbackContext callbackContext) throws JSONException {
-        LOG.v(TAG, "Executing action: " + action);
-        final Activity activity = this.cordova.getActivity();
-        final Window window = activity.getWindow();
-
-        return false;
+    public void onPause(boolean multitasking) {
     }
 
+    /**
+     * Called when the activity will start interacting with the user.
+     *
+     * @param multitasking		Flag indicating if multitasking is turned on for app
+     */
+    @Override
+    public void onResume(boolean multitasking) {
+        this.hideStatusBar();
+    }
+
+
+
+    /**
+     * Called when the activity is becoming visible to the user.
+     */
+    @Override
+    public void onStart() {
+        this.hideStatusBar();
+    }
+
+    /**
+     * Called when the activity is no longer visible to the user.
+     */
+    @Override
+    public void onStop() {
+    }
+
+    /**
+     * Called when the activity receives a new intent.
+     */
+    @Override
+    public void onNewIntent(Intent intent) {
+    }
+
+    /**
+     * The final call you receive before your activity is destroyed.
+     */
+    @Override
+    public void onDestroy() {
+    }
 }
