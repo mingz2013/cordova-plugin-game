@@ -1,0 +1,38 @@
+{
+  "name": "cordova-plugin-game",
+  "version": "1.0.0",
+  "description": "Cordova Game Plugin",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "cordova-plugin-game",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mingz2013/cordova-plugin-game"
+  },
+  "bugs": {
+    "url": "https://github.com/mingz2013/cordova-plugin-game/issues"
+  },
+  "keywords": [
+    "cordova",
+    "game"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "0.1.0": {
+        "cordova": ">=3.0.0"
+      },
+      "3.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "author": "Mingz2013",
+  "license": "Apache-2.0",
+  "devDependencies": {
+  }
+}
