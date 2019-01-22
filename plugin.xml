@@ -32,16 +32,16 @@
         <engine name="cordova" version=">=3.0.0"/>
     </engines>
 
-    <js-module src="www/game.js" name="Game">
-        <clobbers target="window.Game"/>
+    <js-module src="www/GamePlugin.js" name="GamePlugin">
+        <clobbers target="window.GamePlugin"/>
     </js-module>
 
     <platform name="android">
-        <source-file src="src/android/Game.java" target-dir="src/me/mingz/cordova/Game"/>
+        <source-file src="src/android/GamePlugin.java" target-dir="src/me/mingz/cordova/game"/>
 
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Game">
-                <param name="android-package" value="me.mingz.cordova.game.Game"/>
+            <feature name="GamePlugin">
+                <param name="android-package" value="me.mingz.cordova.game.GamePlugin"/>
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
@@ -57,16 +57,16 @@
     <platform name="ios">
 
         <config-file target="config.xml" parent="/*">
-            <feature name="Game">
-                <param name="ios-package" value="CDVGame"/>
+            <feature name="GamePlugin">
+                <param name="ios-package" value="CDVGamePlugin"/>
                 <param name="onload" value="true"/>
             </feature>
             <!--<preference name="StatusBarOverlaysWebView" value="true" />-->
             <!--<preference name="StatusBarStyle" value="lightcontent" />-->
         </config-file>
 
-        <header-file src="src/ios/CDVGame.h"/>
-        <source-file src="src/ios/CDVGame.m"/>
+        <header-file src="src/ios/CDVGamePlugin.h"/>
+        <source-file src="src/ios/CDVGamePlugin.m"/>
 
     </platform>
 
